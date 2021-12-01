@@ -1,9 +1,9 @@
 import "./CustomButton.styles.scss";
 
 export default function CustomButton(props) {
-  const { children, ...remainingProps } = props;
+  const { children, customClass, ...remainingProps } = props;
   return (
-    <button className="custom-button" {...remainingProps}>
+    <button className={`custom-button ${customClass}`} {...remainingProps}>
       {children}
     </button>
   );
