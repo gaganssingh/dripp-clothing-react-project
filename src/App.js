@@ -5,14 +5,15 @@ import { createStructuredSelector } from "reselect";
 
 import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 import { setCurrentUser } from "./redux/user/user.actions";
+import { selectCurrentUser } from "./redux/user/user.selectors";
 
 import HomePage from "./pages/HomePage/HomePage";
 import ShopPage from "./pages/Shop/Shop";
 import Header from "./components/Header/Header";
 import SignInAndSignUpPage from "./pages/SignInAndSignUp/SignInAndSignUp";
+import CheckoutPage from "./pages/Checkout/Checkout";
 
 import "./App.css";
-import { selectCurrentUser } from "./redux/user/user.selectors";
 
 class App extends Component {
   unsubscribeFromAuth = null;
@@ -49,6 +50,7 @@ class App extends Component {
         <Switch>
           <Route path="/" exact component={HomePage} />
           <Route path="/shop" component={ShopPage} />
+          <Route path="/checkout" exact component={CheckoutPage} />
           <Route
             path="/signin"
             exact
