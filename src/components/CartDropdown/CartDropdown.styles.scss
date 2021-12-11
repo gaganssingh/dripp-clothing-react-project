@@ -25,10 +25,11 @@
     /* Hide scrollbar keeping the functionality for IE, Edge and Firefox */
     -ms-overflow-style: none;
     scrollbar-width: none;
-  }
-  /* Hide scrollbar keeping the functionality for Chrome, Safari and Opera */
-  .cart-items::-webkit-scrollbar {
-    display: none;
+
+    /* Hide scrollbar keeping the functionality for Chrome, Safari and Opera */
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 
   button {
