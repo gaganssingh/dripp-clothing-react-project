@@ -1,10 +1,10 @@
 import Directory from "../../components/Directory/Directory";
-import "./HomePage.styles.scss";
+import { HomePageContainer } from "./HomePage.styles";
 
 export default function HomePage(props) {
   return (
-    <div className="homepage">
+    <HomePageContainer>
       <Directory />
-    </div>
+    </HomePageContainer>
   );
 }
