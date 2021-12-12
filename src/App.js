@@ -12,8 +12,11 @@ import ShopPage from "./pages/Shop/Shop";
 import Header from "./components/Header/Header";
 import SignInAndSignUpPage from "./pages/SignInAndSignUp/SignInAndSignUp";
 import CheckoutPage from "./pages/Checkout/Checkout";
-
 import "./App.css";
+
+// SEED SHOP DATA TO FIREBASE
+// import { addCollectionAndDocuments } from "./firebase/firebase.utils";
+// import { selectCollectionsForPreview } from "./redux/shop/shop.selectors";
 
 class App extends Component {
   unsubscribeFromAuth = null;
@@ -31,9 +34,14 @@ class App extends Component {
             ...snapShot.data(),
           });
         });
-      } else {
-        setCurrentUser(userAuth);
       }
+      setCurrentUser(userAuth); // setCurrentUser(null)
+
+      // // SEED SHOP DATA TO FIREBASE
+      // addCollectionAndDocuments(
+      //   "collections",
+      //   this.props.collectionsArray.map(({ title, items }) => ({ title, items }))
+      // );
     });
   }
 
@@ -69,6 +77,7 @@ class App extends Component {
 // });
 const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,
+  // collectionsArray: selectCollectionsForPreview, // SEED SHOP DATA TO FIREBASE
 });
 
 const mapDispatchToProps = (dispatch) => ({
