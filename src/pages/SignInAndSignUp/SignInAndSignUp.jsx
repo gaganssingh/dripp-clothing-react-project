@@ -1,12 +1,12 @@
 import SignIn from "../../components/SignIn/SignIn";
 import SignUp from "../../components/SignUp/SignUp";
-import "./SignInAndSignUp.styles.scss";
+import { SignInAndSignUpContainer } from "./SignInAndSignUp.styles";
 
 export default function SignInAndSignUpPage() {
   return (
-    <div className="sign-in-and-sign-up">
+    <SignInAndSignUpContainer>
       <SignIn />
       <SignUp />
-    </div>
+    </SignInAndSignUpContainer>
   );
 }
