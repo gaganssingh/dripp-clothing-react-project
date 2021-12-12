@@ -1,11 +1,18 @@
+import { withRouter } from "react-router-dom";
 import CollectionItem from "../CollectionItem/CollectionItem";
 import "./CollectionPreview.styles.scss";
 
-export default function CollectionPreview(props) {
-  const { title, items } = props;
+function CollectionPreview(props) {
+  const { title, items, history, match, routeName } = props;
+  console.log(props);
   return (
     <div className="collection-preview">
-      <h1 className="title">{title}</h1>
+      <h1
+        className="title"
+        onClick={() => history.push(`${match.path}/${routeName}`)}
+      >
+        {title}
+      </h1>
       <div className="preview">
         {items
           .filter((item, idx) => idx < 4)
@@ -16,3 +23,5 @@ export default function CollectionPreview(props) {
     </div>
   );
 }
+
+export default withRouter(CollectionPreview);
