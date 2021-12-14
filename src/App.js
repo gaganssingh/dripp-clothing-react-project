@@ -24,25 +24,25 @@ class App extends Component {
   componentDidMount() {
     const { setCurrentUser } = this.props;
 
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
-      if (userAuth) {
-        const userRef = await createUserProfileDocument(userAuth);
+    // this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
+    //   if (userAuth) {
+    //     const userRef = await createUserProfileDocument(userAuth);
 
-        userRef.onSnapshot((snapShot) => {
-          setCurrentUser({
-            id: snapShot.id,
-            ...snapShot.data(),
-          });
-        });
-      }
-      setCurrentUser(userAuth); // setCurrentUser(null)
+    //     userRef.onSnapshot((snapShot) => {
+    //       setCurrentUser({
+    //         id: snapShot.id,
+    //         ...snapShot.data(),
+    //       });
+    //     });
+    //   }
+    //   setCurrentUser(userAuth); // setCurrentUser(null)
 
-      // // SEED SHOP DATA TO FIREBASE
-      // addCollectionAndDocuments(
-      //   "collections",
-      //   this.props.collectionsArray.map(({ title, items }) => ({ title, items }))
-      // );
-    });
+    // // SEED SHOP DATA TO FIREBASE
+    // addCollectionAndDocuments(
+    //   "collections",
+    //   this.props.collectionsArray.map(({ title, items }) => ({ title, items }))
+    // );
+    // });
   }
 
   componentWillUnmount() {
