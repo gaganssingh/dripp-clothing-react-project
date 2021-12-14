@@ -2,9 +2,6 @@ import React, { Component } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
-
-import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
-import { setCurrentUser } from "./redux/user/user.actions";
 import { selectCurrentUser } from "./redux/user/user.selectors";
 
 import HomePage from "./pages/HomePage/HomePage";
@@ -22,12 +19,9 @@ class App extends Component {
   unsubscribeFromAuth = null;
 
   componentDidMount() {
-    const { setCurrentUser } = this.props;
-
     // this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
     //   if (userAuth) {
     //     const userRef = await createUserProfileDocument(userAuth);
-
     //     userRef.onSnapshot((snapShot) => {
     //       setCurrentUser({
     //         id: snapShot.id,
@@ -36,7 +30,6 @@ class App extends Component {
     //     });
     //   }
     //   setCurrentUser(userAuth); // setCurrentUser(null)
-
     // // SEED SHOP DATA TO FIREBASE
     // addCollectionAndDocuments(
     //   "collections",
@@ -80,8 +73,4 @@ const mapStateToProps = createStructuredSelector({
   // collectionsArray: selectCollectionsForPreview, // SEED SHOP DATA TO FIREBASE
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  setCurrentUser: (user) => dispatch(setCurrentUser(user)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps)(App);
