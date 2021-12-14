@@ -3,6 +3,7 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { selectCurrentUser } from "./redux/user/user.selectors";
+import { checkUserSession } from "./redux/user/user.actions";
 
 import HomePage from "./pages/HomePage/HomePage";
 import ShopPage from "./pages/Shop/Shop";
@@ -19,17 +20,9 @@ class App extends Component {
   unsubscribeFromAuth = null;
 
   componentDidMount() {
-    // this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
-    //   if (userAuth) {
-    //     const userRef = await createUserProfileDocument(userAuth);
-    //     userRef.onSnapshot((snapShot) => {
-    //       setCurrentUser({
-    //         id: snapShot.id,
-    //         ...snapShot.data(),
-    //       });
-    //     });
-    //   }
-    //   setCurrentUser(userAuth); // setCurrentUser(null)
+    const { checkUserSession } = this.props;
+    checkUserSession();
+
     // // SEED SHOP DATA TO FIREBASE
     // addCollectionAndDocuments(
     //   "collections",
@@ -68,9 +61,14 @@ class App extends Component {
 // const mapStateToProps = ({ user: { currentUser } }) => ({
 //   currentUser,
 // });
+
 const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,
   // collectionsArray: selectCollectionsForPreview, // SEED SHOP DATA TO FIREBASE
 });
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = (dispatch) => ({
+  checkUserSession: () => dispatch(checkUserSession()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
